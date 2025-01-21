@@ -1,12 +1,15 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { v2 as cloudinary } from 'cloudinary';
 import fs from 'fs';
 import path from 'path';
 (async function () {
   // Configuration
   cloudinary.config({
-    cloud_name: 'dpnc8ddpf',
-    api_key: '926491768555756',
-    api_secret: 'heTbaqllBERsv43lGnWai5rYRcQ', // Click 'View API Keys' above to copy your API secret
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.Cloudinary_API_Secret, // Click 'View API Keys' above to copy your API secret
   });
 })();
 

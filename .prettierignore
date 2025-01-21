@@ -1,0 +1,21 @@
+package-lock.json
+bin/
+<<<<<<< HEAD
+.env
+=======
+
+>>>>>>> 91747a4 (🐛  Fix Bug by Removing .git file and set it every thing again)
+
+
+build/
+dist/
+
+
+src/ignore-this-file.js
+src/config.js
+
+
+**/*.test.js
+
+
+node_modules/

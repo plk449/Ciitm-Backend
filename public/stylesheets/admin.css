@@ -1,0 +1,302 @@
+/*
+===============================================================================
+* 
+* Admin.css - Admin Dashboard Styles
+*
+* This file contains all the styling related to the admin dashboard.
+*
+===============================================================================
+*
+* Included Components:
+* 1. Sidebar
+* 2. Navigation Bar
+* 3. Contact Form
+*
+===============================================================================
+*/
+
+main {
+  display: flex;
+  /* background-color: yellow; */
+  position: relative;
+}
+
+/* ---------------------- shift + x or shift + alt + x ---------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                             Admin sideBar start                            */
+/* -------------------------------------------------------------------------- */
+
+.admin-sidebar {
+  background-color: #ca336b;
+  height: 100vh;
+  width: 8vw;
+  padding: 2% 10px;
+  position: absolute;
+  flex-direction: column;
+  overflow-y: scroll;
+  left: 0;
+  top: 0;
+  display: flex;
+  z-index: 30;
+  gap: 20px;
+}
+
+.admin-sidebar a {
+  font-size: 0.9rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-direction: column;
+  text-decoration: none;
+  margin: 4px 0px;
+  padding: 8px 0px;
+  border-radius: 6px;
+
+  gap: 8px;
+}
+
+.admin-sidebar a:hover {
+  scale: 0.2rem;
+  background-color: black;
+  opacity: 1;
+  transition: all ease-in 0.1s;
+}
+
+.admin-sidebar ion-icon,
+i {
+  font-size: 2rem;
+  color: white;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Admin SideBar End                             */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                             Admin navBar Start                             */
+/* -------------------------------------------------------------------------- */
+.admin-nav {
+  background-color: #28166f;
+
+  height: 10vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+}
+
+.admin-right {
+  width: 100vw;
+  z-index: 20;
+  background-color: #f4d3e2;
+  position: relative;
+  height: 100vh;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              Admin NarBar End                              */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                             Contact Form  Start                      */
+/* -------------------------------------------------------------------------- */
+
+.form_Container {
+  width: 82%;
+  margin-left: 14vw;
+  margin-top: 17vh;
+  border-radius: 30px;
+  overflow-y: scroll;
+  position: relative;
+  height: 80%;
+  background-color: #356a9b;
+}
+
+.contact-item-Controll i {
+  font-size: 2rem;
+  color: black;
+}
+
+.form_title {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  width: 100%;
+  color: white;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 85px;
+  align-items: center;
+  justify-content: space-between;
+  height: 8vh;
+  background-color: black;
+}
+
+.title-email {
+  margin-right: 15vw;
+}
+
+.title-number {
+  margin-right: 5vw;
+}
+
+.form_title p {
+  font-size: 1.5rem;
+}
+
+#contact-items-div {
+  width: 100%;
+  height: 100%;
+  padding: 95px 32px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+.contact-item {
+  width: 100%;
+  display: flex;
+  height: 7vh;
+  border-radius: 15px;
+  border: 2px solid black;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 2vh;
+  background-color: #d1497b;
+}
+
+.contact-item div {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: white;
+}
+
+.contact-item div img {
+  height: 90%;
+  width: 20%;
+  object-fit: contain;
+}
+
+.contact-item div span {
+  font-size: 1.5rem;
+}
+
+.contact-item-Controll {
+  background-color: red;
+  width: 17%;
+  height: 100%;
+}
+
+.contact-item .contact-name,
+.contact-mobileNo,
+.contact-email {
+  width: 25%;
+
+  border-left: 2px solid black;
+  height: 100%;
+}
+
+.contact-email {
+  width: 32%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Contact Form  End                     */
+/* -------------------------------------------------------------------------- */
+
+#albums-items-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+  color: white;
+}
+
+#albums-items-div form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  justify-content: center;
+  font-weight: 600;
+  padding: 10% 5%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: white;
+}
+
+#albums-items-div form div {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#albums-items-div form label {
+  width: fit-content;
+  margin-right: 3vw;
+  height: 7vh;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+#albums-items-div form input[type='text'] {
+  width: 80%;
+  font-size: 1rem;
+  background-color: white;
+  text-transform: capitalize;
+  color: grey;
+  border: none;
+  border-radius: 17px;
+  padding: 20px 30px;
+}
+
+.upload-album {
+  background-color: red;
+  padding: 20px 20px;
+  margin-left: 2vw;
+  margin-bottom: 2vh;
+  border-radius: 25px;
+}
+
+#albums-items-div form input[type='file'] {
+  display: none;
+}
+
+#albums-items-div form button {
+  background-color: #ca336b;
+  padding: 25px 25px;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 15px;
+}
+
+#album-name {
+  height: 7vh;
+}
+
+#album-description {
+  height: 20vh;
+  display: flex;
+
+  overflow-wrap: break-word;
+  text-overflow: clip;
+  flex-wrap: wrap;
+}
+
+.btn-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

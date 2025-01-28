@@ -60,7 +60,7 @@ export let Delete_Testimonial_Controller = async (req, res) => {
     const { id } = req.params;
 
     const deletedTestimonial = await Testimonial.findByIdAndDelete(id);
-   await Delete_From_Cloudinary(deletedTestimonial.image)
+    await Delete_From_Cloudinary(deletedTestimonial.image);
 
     if (!deletedTestimonial) {
       return res.status(404).json({

@@ -6,9 +6,10 @@ import fs from 'fs';
 import path from 'path';
 (async function () {
   // Configuration
+
   cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
+    cloud_name: process.env.Cloudinary_Cloud_Name,
+    api_key: process.env.Cloudinary_API_Key,
     api_secret: process.env.Cloudinary_API_Secret, // Click 'View API Keys' above to copy your API secret
   });
 })();
@@ -44,7 +45,7 @@ export const uploadOnCloudinary = async (localFilePath) => {
 
     return ImageDetail;
   } catch (error) {
-    fs.unlinkSync(localFilePath);
+    fs.unlinkSync(`public/upload/${localFilePath}`);
     throw Error(error.message);
   }
 };
@@ -54,7 +55,6 @@ export const Delete_From_Cloudinary = async (url) => {
     let public_id = path.basename(url).split('.')[0] + path.extname(url);
 
     let delete_Image = await cloudinary.uploader.destroy(public_id);
-    console.log('delete_Image', delete_Image);
 
     if (delete_Image.result === 'ok') {
       fs.rmSync(`public/upload/${public_id}`);

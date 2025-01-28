@@ -61,7 +61,7 @@ cron.schedule('0 0 31 12 *', async () => {
 
 // app.use(limiter);
 
-const whitelist = new Set([process.env.website_URL]);
+const whitelist = new Set([process.env.website_URL || 'http://localhost:5173']);
 
 const corsOptions = {
   origin: function (origin, callback) {

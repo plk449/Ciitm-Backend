@@ -19,48 +19,43 @@ export const createAlbum = async (req, res) => {
 
     let Find_Album = await albumSchema.findOne({ aName: albumName });
 
-
     if (Find_Album) {
       res.status(400).json({ message: 'Album already exist' });
-      
     }
-
-
-
 
     let Cloudinary = await uploadOnCloudinary(filename);
 
-      if (!Cloudinary) {
-        return res.status(400).json({ message: 'Error uploading image' });
-      }
+    if (!Cloudinary) {
+      return res.status(400).json({ message: 'Error uploading image' });
+    }
 
-      let validate = await AlbumSchemaJoi.validateAsync({
-        albumDescription,
-        albumImageUrl: Cloudinary.url,
-        Public_Id: Cloudinary.public_id,
-        albumName: albumName,
-      });
+    let validate = await AlbumSchemaJoi.validateAsync({
+      albumDescription,
+      albumImageUrl: Cloudinary.url,
+      Public_Id: Cloudinary.public_id,
+      albumName: albumName,
+    });
 
-      console.log('validate', validate);
+    console.log('validate', validate);
 
-      let createdAlbum = await albumSchema.create({
-        aName: albumName,
-        aDescription: albumDescription,
-        aImage_url: Cloudinary.url,
-        aImage_Public_Id: Cloudinary.public_id,
-      });
+    let createdAlbum = await albumSchema.create({
+      aName: albumName,
+      aDescription: albumDescription,
+      aImage_url: Cloudinary.url,
+      aImage_Public_Id: Cloudinary.public_id,
+    });
 
-      logger.info('Album created successfully');
-      res.status(200).json({
-        message: '1 Album Created 😊',
-        created: true,
-        data: createdAlbum,
-      });
+    logger.info('Album created successfully');
+    res.status(200).json({
+      message: '1 Album Created 😊',
+      created: true,
+      data: createdAlbum,
+    });
 
-      // ! Handle Error When Album Not Created
-      if (!createAlbum) {
-        res.status(400).json({ message: Album_Contant.Not_Created });
-      }
+    // ! Handle Error When Album Not Created
+    if (!createAlbum) {
+      res.status(400).json({ message: Album_Contant.Not_Created });
+    }
   } catch (error) {
     res.status(error.status || 500).json({
       message: error.message || Album_Contant.Not_Created,
@@ -93,7 +88,6 @@ export const deleteAlbum = async (req, res) => {
         findAlbum: findAlbum,
       });
     }
-
   } catch (error) {
     logger.error(`Error creating album: ${error.message}`);
     res.status(500).json({

@@ -39,7 +39,7 @@ export const CreateImage = async (req, res) => {
       throw error;
     }
 
-   
+   console.log('filename', filename); 
 
     let Cloudinary = await uploadOnCloudinary(filename);
 
@@ -101,28 +101,47 @@ export const deleteImage = async (req, res) => {
     }
 
     
+    let findAlbum = await albumSchema.findById(findImage.albumID)
+ 
 
-    // let DeletedImage = await Delete_From_Cloudinary(findImage.url);
 
-    // if (DeletedImage.deleted) {
-    //   let Delete_Image = imageSchema.findByIdAndDelete(id);
-    //   let findAlbum = await albumSchema.findById(findImage.albumID).populate('images');
-    //   let array = findImage.albumID.images;
-    //   delete array[array.indexOf(id)];
-    //   await Album.save();
 
-    //   res.status(200).json({
-    //     message: DeletedImage.message,
-    //     public_id: DeletedImage.public_id,
-    //     findImage,
-    //   });
-    // } else {
-    //   res.status(DeletedImage.stack || 404).json({
-    //     message: DeletedImage.message,
-    //     public_id: DeletedImage.public_id,
-    //     findImage: findImage,
-    //   });
-    // }
+    let DeletedImage = await Delete_From_Cloudinary(findImage.url);
+
+    let Delete_Image = imageSchema.findByIdAndDelete(id);
+
+
+    if (DeletedImage.deleted) {
+      let Delete_Image = await  imageSchema.findByIdAndDelete(id);
+
+
+      if (!Delete_Image) {
+        let error = new Error('Error Deleting Image');
+        error.status = 500;
+        throw error;
+      }
+
+  
+      let indexOf = (id) => findAlbum.images.indexOf(id);
+
+      
+      findAlbum.images.splice(indexOf(id) , 1);
+
+      await findAlbum.save();
+   
+
+      res.status(200).json({
+        message: DeletedImage.message,
+        public_id: DeletedImage.public_id,
+        Delete_Image: Delete_Image,
+      });
+    } else {
+      res.status(DeletedImage.stack || 404).json({
+        message: DeletedImage.message,
+        public_id: DeletedImage.public_id,
+        findImage: findImage,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       message: error.message,

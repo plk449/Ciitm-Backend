@@ -5,7 +5,7 @@ export const Handle_ContactForm = async (req, res) => {
   try {
     console.log('Received data:', req.body);
     const { cName, cEmail, cNumber, cMessage, cCountry } = req.body;
-
+    console.log('Received data: 2', cName, cEmail, cNumber, cMessage, cCountry);
     const { error } = courseSchemaJoi.validate(req.body);
 
     if (error) {

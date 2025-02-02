@@ -15,6 +15,7 @@ import { STUDENT_Constant } from '../constant/Student .constant.js';
 import Update_Status_Validation from '../validation/Update_Status_Validation.js';
 import { COURSE_Constant } from '../constant/Course.constant.js';
 import AuthenticationSchema from '../models/AuthenticationSchema.model.js';
+import { uploadOnCloudinary } from '../utils/Cloudinary.js';
 
 env.config({
   path: '../../.enx',
@@ -23,7 +24,23 @@ env.config({
 export const Handle_newStudent_Record = async (req, res) => {
   try {
     const data = req.body;
-    let { courseName } = req.body;
+    let {filename} = req.file;
+
+
+
+
+     let Cloudinary = await uploadOnCloudinary(filename)
+
+     if (Cloudinary.error) {
+       return res.status(400).json({
+         message: 'Failed to Upload Image',
+         error: true,
+       });
+     }
+
+  
+    
+     let { courseName } = req.body;
 
     const admissionInstance = new AdmissionSchema();
 
@@ -60,6 +77,7 @@ export const Handle_newStudent_Record = async (req, res) => {
       data: data,
       courseId: find_course._id.toString(),
       uniqueId: uniqueId,
+      image_Url: Cloudinary.url,
     });
 
     if (!Admission) {

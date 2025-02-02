@@ -78,6 +78,12 @@ const AdmissionSchema = new Schema({
       maxlength: [10, 'Maximum number is 10 digits'],
       minlength: [10, 'Minimum number is 10 digits'],
     },
+
+    avtar:{
+      type:String,
+      default:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+
+    },
   },
 
   guardian: {

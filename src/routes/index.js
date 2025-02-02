@@ -50,7 +50,7 @@ router.get('/find/teacher', Find_Teacher_Controller);
 
 router.get('/notice', Find_Notice_Controller);
 
-router.post('/admission/student', Handle_newStudent_Record);
+router.post('/admission/student',  upload.single('avtar') , Handle_newStudent_Record);
 
 router.post('/contact/form/submit', Handle_ContactForm);
 

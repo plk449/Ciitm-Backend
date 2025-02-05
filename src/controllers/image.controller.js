@@ -39,7 +39,7 @@ export const CreateImage = async (req, res) => {
       throw error;
     }
 
-   console.log('filename', filename); 
+    console.log('filename', filename);
 
     let Cloudinary = await uploadOnCloudinary(filename);
 
@@ -100,20 +100,14 @@ export const deleteImage = async (req, res) => {
       throw error;
     }
 
-    
-    let findAlbum = await albumSchema.findById(findImage.albumID)
- 
-
-
+    let findAlbum = await albumSchema.findById(findImage.albumID);
 
     let DeletedImage = await Delete_From_Cloudinary(findImage.url);
 
     let Delete_Image = imageSchema.findByIdAndDelete(id);
 
-
     if (DeletedImage.deleted) {
-      let Delete_Image = await  imageSchema.findByIdAndDelete(id);
-
+      let Delete_Image = await imageSchema.findByIdAndDelete(id);
 
       if (!Delete_Image) {
         let error = new Error('Error Deleting Image');
@@ -121,14 +115,11 @@ export const deleteImage = async (req, res) => {
         throw error;
       }
 
-  
       let indexOf = (id) => findAlbum.images.indexOf(id);
 
-      
-      findAlbum.images.splice(indexOf(id) , 1);
+      findAlbum.images.splice(indexOf(id), 1);
 
       await findAlbum.save();
-   
 
       res.status(200).json({
         message: DeletedImage.message,

@@ -7,7 +7,7 @@ import { sendMail } from './admin.service.js';
 
 import { find_Course } from './client.service.js';
 
-export let create_Student = async ({ data, uniqueId, courseId  , image_Url}) => {
+export let create_Student = async ({ data, uniqueId, courseId, image_Url }) => {
   try {
     const admission = await AdmissionSchema.create({
       uniqueId: uniqueId,
@@ -24,7 +24,7 @@ export let create_Student = async ({ data, uniqueId, courseId  , image_Url}) => 
         gender: data.gender,
         nationality: data.nationality,
         contactNumber: Number(data.contactNumber),
-        avtar: image_Url
+        avtar: image_Url,
       },
 
       guardian: {

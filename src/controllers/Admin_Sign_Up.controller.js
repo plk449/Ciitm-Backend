@@ -5,13 +5,6 @@ import { uploadOnCloudinary } from '../utils/Cloudinary.js';
 export let SignUp_Admin = async (req, res) => {
   try {
     const { name, email, password, confirm_Password } = req.body;
-    let { filename } = req.file;
-
-    if (!filename) {
-      return res
-        .status(400)
-        .json({ message: 'Please upload a profile picture' });
-    }
 
     let Authentication_Instance = new AuthenticationSchema();
 
@@ -42,12 +35,6 @@ export let SignUp_Admin = async (req, res) => {
         .json({ message: 'Fail to Hash Email and Password' });
     }
 
-    let Cloudinary = await uploadOnCloudinary(`${filename}`, filename);
-
-    if (!Cloudinary) {
-      return res.status(400).json({ message: 'Error uploading image' });
-    }
-
     let Find_Admin_Role = await Admin_Role.findOne({ email: email });
 
     if (!Find_Admin_Role) {
@@ -62,7 +49,6 @@ export let SignUp_Admin = async (req, res) => {
       email: email,
       email_verified: true,
       password: HashPassword,
-      picture: Cloudinary.url,
       role: 'admin',
     });
 

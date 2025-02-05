@@ -24,23 +24,18 @@ env.config({
 export const Handle_newStudent_Record = async (req, res) => {
   try {
     const data = req.body;
-    let {filename} = req.file;
+    let { filename } = req.file;
 
+    let Cloudinary = await uploadOnCloudinary(filename);
 
+    if (Cloudinary.error) {
+      return res.status(400).json({
+        message: 'Failed to Upload Image',
+        error: true,
+      });
+    }
 
-
-     let Cloudinary = await uploadOnCloudinary(filename)
-
-     if (Cloudinary.error) {
-       return res.status(400).json({
-         message: 'Failed to Upload Image',
-         error: true,
-       });
-     }
-
-  
-    
-     let { courseName } = req.body;
+    let { courseName } = req.body;
 
     const admissionInstance = new AdmissionSchema();
 

@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { abort } from 'node:process';
 
 // Define the Frontend schema
 const FrontendSchema = new Schema({
@@ -177,9 +178,93 @@ const FrontendSchema = new Schema({
           type: String,
           required: true,
         },
+
+        Heading: {
+          type: String,
+          required: true,
+        },
+
+        description: {
+          type: String,
+          required: true,
+        },
+
+        image: {
+          type: String,
+          required: true,
+        },
+
+        Number: {
+          type: String,
+    
+        },
+
+        Price: {
+          type: Number,
+        },
+
+
+
       },
     ],
   },
+
+
+  contactPage: {
+
+    title: {
+      type: String,
+      required: true,
+    },
+    abort:{
+      type: String,
+      required: true,
+    },
+
+    location: {
+      type: String,
+      required: true,
+    },
+
+    Principal: {
+      type: String,
+      required: true,
+    }
+
+  },
+
+
+  Login: {
+    title: {
+      type: String,
+      required: true,
+    },
+   paragraph:{
+     type: String,
+     required: true,
+   },
+
+   image:{
+     type: String,
+     required: true,
+   }
+  },
+
+
+  Sign_Up: {
+    title: {
+      type: String,
+      required: true,
+    },
+
+   image:{
+     type: String,
+     required: true,
+   }
+  },
+
+
+
 });
 
 const Frontend = model('Frontend', FrontendSchema);

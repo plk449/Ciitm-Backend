@@ -240,7 +240,7 @@ AdmissionSchema.methods.generate_id = async function (courseName) {
     specialChars: false,
   });
 
-  const uniqueId = `CIITM_${courseName}_${otp}`;
+  const uniqueId = `CIITM_${otp}`;
   return uniqueId;
 };
 
@@ -256,7 +256,6 @@ AdmissionSchema.methods.createStudentCourse = async function ({
       courseName: courseName,
     });
 
-   
     if (!foundCourse) {
       throw new Error('Course not found');
     }
